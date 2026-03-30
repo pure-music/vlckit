@@ -325,12 +325,14 @@ if [ "$NONETWORK" != "yes" ]; then
             info "Applying the patches failed, aborting git-am"
             exit 1
         fi
+        cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
         cd ..
     else
         cd vlc
         git fetch --all
         git reset --hard ${TESTEDHASH}
         git am ${ROOT_DIR}/libvlc/patches/*.patch
+        cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
         cd ..
     fi
 fi
