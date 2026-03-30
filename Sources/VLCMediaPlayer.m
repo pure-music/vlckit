@@ -182,6 +182,23 @@ static void HandleMediaInstanceStateChanged(const libvlc_event_t * event, void *
     }
 }
 
+static void HandleMediaInstanceBuffingStateChanged(const libvlc_event_t * event, void * opaque)
+{
+    VLCMediaPlayerState newState = VLCMediaPlayerStateBuffering;
+    @autoreleasepool {
+        NSNumber *buffering = @(event->u.media_player_buffering.new_cache);
+        VLCEventsHandler *eventsHandler = (__bridge VLCEventsHandler*)opaque;
+        [eventsHandler handleEvent:^(id _Nonnull object) {
+            VLCMediaPlayer *mediaPlayer = (VLCMediaPlayer *)object;
+            [mediaPlayer mediaPlayerStateChanged: @(newState)];
+            NSNotification *notification = [NSNotification notificationWithName: VLCMediaPlayerStateChanged object: buffering];
+            [[NSNotificationCenter defaultCenter] postNotification: notification];
+            if([mediaPlayer.delegate respondsToSelector:@selector(mediaPlayerStateChanged:)])
+                [mediaPlayer.delegate mediaPlayerStateChanged: notification];
+        }];
+    }
+}
+
 static void HandleMediaPlayerMediaChanged(const libvlc_event_t * event, void * opaque)
 {
     @autoreleasepool {
@@ -1524,7 +1541,7 @@ static void HandleMediaPlayerRecord(const libvlc_event_t * event, void * opaque)
         libvlc_event_attach(p_em, libvlc_MediaPlayerEndReached,       HandleMediaInstanceStateChanged, p_user_data);
         libvlc_event_attach(p_em, libvlc_MediaPlayerStopped,          HandleMediaInstanceStateChanged, p_user_data);
         libvlc_event_attach(p_em, libvlc_MediaPlayerOpening,          HandleMediaInstanceStateChanged, p_user_data);
-        libvlc_event_attach(p_em, libvlc_MediaPlayerBuffering,        HandleMediaInstanceStateChanged, p_user_data);
+        libvlc_event_attach(p_em, libvlc_MediaPlayerBuffering,        HandleMediaInstanceBuffingStateChanged, p_user_data);
         libvlc_event_attach(p_em, libvlc_MediaPlayerESAdded,          HandleMediaInstanceStateChanged, p_user_data);
 
         libvlc_event_attach(p_em, libvlc_MediaPlayerPositionChanged,  HandleMediaPositionChanged,      p_user_data);
