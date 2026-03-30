@@ -1,0 +1,29 @@
+name: audio-build
+
+on:
+  - workflow_dispatch
+
+jobs:
+  linux:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: videolan/vlckit
+          ref: 3.7.3   # 也可以是 branch / commit SHA
+
+#      - name: Clone vlc
+#        run: |
+#          ls
+#          cd libvlc
+#          git clone https://github.com/videolan/vlc.git
+#          cd vlc
+#          git checkout 3.0.22
+#          echo "checkout 3.0.22"
+#          ls
+#          cd ..
+#          git am ../libvlc/patches/*
+
+      - name: Build
+        run: |
+          ./buildMobileVLCKit.sh -a all
