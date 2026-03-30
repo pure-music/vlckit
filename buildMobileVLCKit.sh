@@ -326,6 +326,8 @@ if [ "$NONETWORK" != "yes" ]; then
             exit 1
         fi
         cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
+        info "replace rules.mak finish"
+        cat ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
         cd ..
     else
         cd vlc
@@ -333,6 +335,8 @@ if [ "$NONETWORK" != "yes" ]; then
         git reset --hard ${TESTEDHASH}
         git am ${ROOT_DIR}/libvlc/patches/*.patch
         cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
+        info "replace rules.mak finish"
+        cat ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
         cd ..
     fi
 fi
