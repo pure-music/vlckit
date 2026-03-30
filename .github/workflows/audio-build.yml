@@ -27,3 +27,10 @@ jobs:
       - name: Build
         run: |
           ./buildMobileVLCKit.sh -a all
+          
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vlckit
+          path: ${{github.workspace}}/build/MobileVLCKit.xcframework
