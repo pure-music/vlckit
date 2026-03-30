@@ -9,8 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: videolan/vlckit
-          ref: 3.7.3   # 也可以是 branch / commit SHA
+          ref: cj-audio-package   # 也可以是 branch / commit SHA
 
 #      - name: Clone vlc
 #        run: |
