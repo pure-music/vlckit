@@ -1,0 +1,20 @@
+--- libvlc/vlc/contrib/src/ffmpeg/rules.mak	2026-03-31 14:29:16
++++ FfmpegConfig/rules.mak	2026-03-31 14:31:36
+@@ -214,7 +214,17 @@
+ ifeq ($(call need_pkg,"libavcodec >= $(FFMPEG_LAVC_MIN) libavformat >= 53.21.0 libswscale"),)
+ PKGS_FOUND += ffmpeg
+ endif
++
++FFMPEGCONF += --disable-muxers
++FFMPEGCONF += --disable-encoders
++FFMPEGCONF += --disable-protocol='hls,pipe,rtmp*,rtmp,rtp,udp,mmsh,mmst'
++FFMPEGCONF += --disable-demuxers
++FFMPEGCONF += --enable-demuxer='aac,ac3,aiff,amr,ape,asf,ass,caf,eac3,flac,loas,matroska,mov,mp3,mpeg*,ogg,srt,vc1,wav,dsf,dff,iff,dts'
++FFMPEGCONF += --disable-decoders
++FFMPEGCONF += --enable-decoder='aac*,ac3*,adpcm*,alac*,amr*,ape,cook,dca,dolby_e,eac3*,flac,mp1*,mp2*,mp3*,opus,pcm*,sonic,truehd,tta,vorbis,wma,dsd*,dca_ma,dst'
+ 
++
++
+ FFMPEGCONF += --nm="$(NM)" --ar="$(AR)" --ranlib="$(RANLIB)"
+ 
+ $(TARBALLS)/ffmpeg-$(FFMPEG_BASENAME).tar.xz:

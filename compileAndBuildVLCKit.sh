@@ -532,7 +532,6 @@ if [ "$VLCROOT" = "" ]; then
                 info "Applying the patches failed, aborting git-am"
                 exit 1
             fi
-            cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
             info "replace rules.mak finish"
             cat ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
             cd ..
@@ -541,7 +540,6 @@ if [ "$VLCROOT" = "" ]; then
             git fetch --all
             git reset --hard ${TESTEDHASH}
             git am ${ROOT_DIR}/libvlc/patches/*.patch
-            cp -f ${ROOT_DIR}/FFmpegConfig/rules.mak ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
             info "replace rules.mak finish"
             cat ${ROOT_DIR}/libvlc/vlc/contrib/src/ffmpeg/rules.mak
             cd ..
