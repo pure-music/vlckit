@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: cj-audio-package   # 也可以是 branch / commit SHA
+          ref: cj-audio-package-4.0.0a18   # 也可以是 branch / commit SHA
 
 #      - name: Clone vlc
 #        run: |
@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: |
           ls
-          sh compileAndBuildVLCKit.sh -a aarch64
+          ./compileAndBuildVLCKit.sh -a aarch64
           
 
       - name: Upload Artifacts
