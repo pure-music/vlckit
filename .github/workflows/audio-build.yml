@@ -25,6 +25,7 @@ jobs:
 
       - name: Build
         run: |
+          ls
           sh compileAndBuildVLCKit.sh -a aarch64
           
 
