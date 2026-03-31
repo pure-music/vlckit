@@ -237,7 +237,7 @@ FFMPEGCONF += --disable-protocol='hls,pipe,rtmp*,rtmp,rtp,udp,mmsh,mmst'
 FFMPEGCONF += --disable-demuxers
 FFMPEGCONF += --enable-demuxer='aac,ac3,aiff,amr,ape,asf,ass,caf,eac3,flac,loas,matroska,mov,mp3,mpeg*,ogg,srt,vc1,wav,dsf,dff,iff,dts'
 FFMPEGCONF += --disable-decoders
-FFMPEGCONF += --enable-decoder=='aac*,ac3*,adpcm*,alac*,amr*,ape,cook,dca,dolby_e,eac3*,flac,mp1*,mp2*,mp3*,opus,pcm*,sonic,truehd,tta,vorbis,wma,dsd*,dca_ma,dst'
+FFMPEGCONF += --enable-decoder='aac*,ac3*,adpcm*,alac*,amr*,ape,cook,dca,dolby_e,eac3*,flac,mp1*,mp2*,mp3*,opus,pcm*,sonic,truehd,tta,vorbis,wma,dsd*,dca_ma,dst'
 
 
 
